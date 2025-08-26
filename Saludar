@@ -1,0 +1,47 @@
+import javax.swing.*;
+
+public class Saludador extends JFrame {
+
+    private JTextField txtNombre;
+    private JButton btnSaludar;
+
+    public Saludador() {
+        setTitle("Saludador Personalizable");
+        setSize(400, 120);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null); // Centrar ventana
+        setLayout(null); // Layout absoluto para simplicidad
+
+        // Crear campo de texto
+        txtNombre = new JTextField();
+        txtNombre.setBounds(20, 20, 250, 25);
+        add(txtNombre);
+
+        // Crear botón
+        btnSaludar = new JButton("Saludar");
+        btnSaludar.setBounds(280, 20, 90, 25);
+        add(btnSaludar);
+
+        // Acción del botón
+        btnSaludar.addActionListener(e -> {
+            String nombre = txtNombre.getText().trim();
+            if (nombre.isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                        "Por favor, escribe tu nombre.",
+                        "Aviso",
+                        JOptionPane.WARNING_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "¡Hola " + nombre + "!",
+                        "Saludo",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            new Saludador().setVisible(true);
+        });
+    }
+}
